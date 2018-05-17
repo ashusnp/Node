@@ -10,6 +10,9 @@ var addNote=(title,body)=>{
  var noteString=	fs.readFileSync('note-data.json');
   var notes=JSON.parse(noteString);
  }
+ catch(e){
+
+ }
 
  // var duplicateArray=notes.filter((note)=>{
  // 	return note.title===title;
@@ -18,11 +21,11 @@ var addNote=(title,body)=>{
 
  if(duplicateArray.length===0){
  	notes.push(note);
- 	fs.writeFileSync('note-data.json',notes);
+ 	fs.writeFileSync('note-data.json',JSON.stringify(notes));
  }
 
 
- 
+
 };
 var getAll=()=>{
 	console.log("Get all notes");
@@ -41,5 +44,3 @@ getAll,
 removeNote,
 readNote
 }
-
-
