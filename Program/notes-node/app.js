@@ -2,8 +2,55 @@ console.log("Start");
 const fs=require('fs');
 //const os=require('os');
 const _=require('lodash');
+const yargs=require('yargs');
+
 
 const notes=require('./notes.js');
+
+
+const argv=yargs.argv;
+//var command=process.argv[2];
+var command=argv._[0];
+//console.log("process ",process.argv);
+console.log("yargs ",argv);
+if(command==='add'){
+	//console.log("Adding");
+	notes.addNote(argv.title,argv.body);
+}else if(command==='list'){
+	notes.getAll();
+}else if(command==='read'){
+		notes.readNote(argv.title);
+}else if(command==='remove'){
+		notes.removeNote(argv.title);
+}else{
+	console.log('not found');
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*//var res=notes.addNote();
 //console.log(os.userInfo());

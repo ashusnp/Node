@@ -1,10 +1,25 @@
 console.log("Notes Js Starting")
 //module.exports.age=24;
-module.exports.addNote=()=>{
-  console.log("In add Note");
-  return "From addNote";
+var addNote=(title,body)=>{
+  console.log("Adding ",title,body);
+ 
 };
+var getAll=()=>{
+	console.log("Get all notes");
+}
+var readNote=(title)=>{
+	console.log("read ",title);
+}
+var removeNote=(title)=>{
+	console.log("remove ",title);
+}
 
-module.exports.add=(a,b)=>{
-  return a+b;
-};
+module.exports={
+//	addNote:addNote
+addNote, //es6
+getAll,
+removeNote,
+readNote
+}
+
+
