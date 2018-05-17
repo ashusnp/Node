@@ -15,13 +15,31 @@ var command=argv._[0];
 console.log("yargs ",argv);
 if(command==='add'){
 	//console.log("Adding");
-	notes.addNote(argv.title,argv.body);
+	var res=notes.addNote(argv.title,argv.body);
+	if(res===1){
+		console.log("Save Sucessfully");
+		}
+	else if(res===2){
+		console.log("Note already present");
+	}
+	else{
+		console.log("Error Occured");
+	}
 }else if(command==='list'){
 	notes.getAll();
 }else if(command==='read'){
-		notes.readNote(argv.title);
+	var notesArr=	notes.readNote(argv.title);
+	if(notesArr.length===1){
+		console.log(`note Found with title as ${notesArr[0].title} AND has body as
+			${notesArr[0].body}`);
+	}
+	else{
+		console.log("Not Found");
+	}
 }else if(command==='remove'){
-		notes.removeNote(argv.title);
+	var status=	notes.removeNote(argv.title);
+	var message=status?"Note removed":"Note not found";
+	console.log(message);
 }else{
 	console.log('not found');
 }
