@@ -42,6 +42,7 @@ var getAll=()=>{
 	console.log("Get all notes");
 }
 var readNote=(title)=>{
+  debugger;
 	var notes=fetchNotes();
   var filterArray=notes.filter((note)=>note.title===title)
   return filterArray;
