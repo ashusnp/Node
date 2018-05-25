@@ -1,6 +1,7 @@
 
 const yargs=require('yargs');
 const gecode=require('./gecode/gecode');
+const weather=require('./weather/weather');
 const argv=yargs
           .options({
             a:{
@@ -20,7 +21,16 @@ gecode.getAddress(argv.a,(errorMessage,res)=>{
     console.log(errorMessage);
   }
   else{
-    console.log(JSON.stringify(res,undefined,2));
+    console.log(res.address);
+    weather.getWeather(res.lat,res.lng,(errorMessage,resW)=>{
+      if(errorMessage){
+        console.log(errorMessage);
+      }
+      else{
+        console.log(JSON.stringify(resW,undefined,2));
+      }
+    });
+
   }
 
 });
