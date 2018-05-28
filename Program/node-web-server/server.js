@@ -3,7 +3,14 @@ const hbs=require('hbs');
 
 
 var app=express();
+hbs.registerPartials(__dirname+'/views/partials')
 app.set('view engine','hbs');
+hbs.registerHelper('getCurrentYear',()=>{
+  return new Date().getFullYear();
+});
+hbs.registerHelper('toUppercase',(text)=>{
+  return text.toUpperCase();
+});
 //console.log(__dirname);
 app.use(express.static(__dirname+'/public'));
 app.get('/',(request,response)=>{
@@ -18,15 +25,14 @@ app.get('/',(request,response)=>{
 
   response.render('home.hbs',{
     pageTitle:"Home",
-    currentYear:new Date().getFullYear()
+    welcome:"Welcome here"
   })
 });
 
 app.get('/about',(request,response)=>{
 //  response.send('<h1>About Page</h1>')
 response.render('about.hbs',{
-  pageTitle:'About',
-  currentYear:new Date().getFullYear()
+  pageTitle:'About'
 });
 });
 
