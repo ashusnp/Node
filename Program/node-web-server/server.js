@@ -1,5 +1,6 @@
 const express=require('express');
 const hbs=require('hbs');
+const fs=require('fs');
 
 
 var app=express();
@@ -12,7 +13,23 @@ hbs.registerHelper('toUppercase',(text)=>{
   return text.toUpperCase();
 });
 //console.log(__dirname);
-app.use(express.static(__dirname+'/public'));
+app.use(express.static(__dirname+'/public'));// for read static page
+
+app.use((req,res,next)=>{
+  var now=new Date().toString();
+  var log=`${now} ${req.method} ${req.url}`
+  fs.appendFile('server.log',log+'\n',(error)=>{
+    if(error){
+      console.log('could not connect to server.log');
+    }
+  });
+  next();
+});
+
+app.use((req,res,next)=>{
+  res.render('maintaince.hbs')
+});
+
 app.get('/',(request,response)=>{
   //response.send("Hello world");
   // response.send({
@@ -42,6 +59,6 @@ app.get('/bad',(request,response)=>{
   });
 });
 
-app.listen(3000,()=>{
+app.listen(3030,()=>{
   console.log('Server started on port 3000');
 });
