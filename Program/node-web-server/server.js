@@ -2,7 +2,7 @@ const express=require('express');
 const hbs=require('hbs');
 const fs=require('fs');
 
-
+const port=process.env.Port || 3030;
 var app=express();
 hbs.registerPartials(__dirname+'/views/partials')
 app.set('view engine','hbs');
@@ -26,9 +26,9 @@ app.use((req,res,next)=>{
   next();
 });
 
-app.use((req,res,next)=>{
-  res.render('maintaince.hbs')
-});
+// app.use((req,res,next)=>{
+//   res.render('maintaince.hbs')
+// });
 
 app.get('/',(request,response)=>{
   //response.send("Hello world");
@@ -59,6 +59,6 @@ app.get('/bad',(request,response)=>{
   });
 });
 
-app.listen(3030,()=>{
-  console.log('Server started on port 3000');
+app.listen(port,()=>{
+  console.log('Server started on port '+port);
 });
