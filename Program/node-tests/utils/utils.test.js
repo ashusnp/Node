@@ -9,6 +9,14 @@ it('should add two number',()=>{
   // }
 });
 
+it('should add two numbers by asnyc',(done)=>{
+  utils.asyncAdd(3,4,(sum)=>{
+    expect(sum).toBe(7);
+    done();//if time is more then 2 sec then test fails
+  });
+})
+
+
 it('should square a number',()=>{
   var res=utils.square(2);
   expect(res).toBe(4).toBeA('number');
